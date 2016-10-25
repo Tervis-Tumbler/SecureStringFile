@@ -46,3 +46,10 @@ function Get-SecureStringFile {
     $PlainString  
 }
 
+function Get-ValueFromSecureString {
+    param(
+        [Parameter(Mandatory = $True, ValueFromPipeline = $True)]
+        $SecureString
+    )
+    (New-Object System.Management.Automation.PSCredential 'N/A', $SecureString).GetNetworkCredential().Password
+}
